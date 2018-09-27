@@ -1,2 +1,2 @@
 # ATDA
-The code for ...
+Prepare to upload
