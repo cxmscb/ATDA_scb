@@ -55,7 +55,7 @@ def main(attack, src_model_name, target_model_names):
     eps = args.eps
 
     # take the random step in the RAND+FGSM
-    if attack == "rand_fgs":
+    if attack == "rfgs":
         X_test = np.clip(
             X_test + args.alpha * np.sign(np.random.randn(*X_test.shape)),
             0.0, 1.0)
