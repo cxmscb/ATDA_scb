@@ -27,7 +27,7 @@ def symbolic_fgs(x, grad, eps=0.3, clipping=True, reverse=False):
 
 def symbolic_alpha_fgs(x, grad, eps, alpha, clipping=True):
     """
-    FGSM attack.
+    R+FGSM attack.
     """
 
     # signed gradient
@@ -43,19 +43,20 @@ def symbolic_alpha_fgs(x, grad, eps, alpha, clipping=True):
         adv_x = K.clip(adv_x, 0, 1)
     return adv_x
 
-def iter_fgs(model, x, y, steps, eps):
+def iter_fgs(model, x, y, steps, eps, alpha):
     """
-    I-FGSM attack.
+    PGD / I-FGSM attack.
     """
 
     adv_x = x
-
+   
     # iteratively apply the FGSM with small step size
     for i in range(steps):
         logits = model(adv_x)
         grad = gen_grad(adv_x, logits, y)
 
-        adv_x = symbolic_fgs(adv_x, grad, eps, True)
+        adv_x = symbolic_fgs(adv_x, grad, alpha, True)
+        adv_x = tf.clip_by_value(adv_x, x-eps, x+eps)
     return adv_x
 
 

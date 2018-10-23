@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import keras.backend as K
-from fashion_mnist import load_data, set_flags, load_model
+from cifar10 import load_data, set_flags, load_model
 from fgs import symbolic_fgs, iter_fgs, momentum_fgs
 from attack_utils import gen_grad
 from tf_utils import tf_test_error_rate, batch_eval
@@ -11,7 +11,6 @@ from tensorflow.python.platform import flags
 FLAGS = flags.FLAGS
 
 K.set_image_data_format('channels_first')
-
 
 
 def main(attack, src_model_name, target_model_names):
@@ -69,8 +68,8 @@ def main(attack, src_model_name, target_model_names):
         adv_x = symbolic_fgs(x, grad, eps=eps)
 
     # iterative FGSM
-    if attack == "bim":
-        adv_x = iter_fgs(src_model, x, y, steps=args.steps, eps=args.eps/args.steps)
+    if attack == "pgd":
+        adv_x = iter_fgs(src_model, x, y, steps=args.steps, eps=args.eps, alpha=args.eps/10.0)
     
     if attack == 'mim':
         adv_x = momentum_fgs(src_model, x, y, eps=args.eps)
@@ -93,16 +92,16 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("attack", help="name of attack",
-                        choices=["test", "fgs", "bim", "rfgs", "mim"])
+                        choices=["test", "fgs", "pgd", "rfgs", "mim"])
     parser.add_argument("src_model", help="source model for attack")
     parser.add_argument('target_models', nargs='*',
                         help='path to target model(s)')
-    parser.add_argument("--eps", type=float, default=0.1,
+    parser.add_argument("--eps", type=float, default=4./255,
                         help="attack scale")
-    parser.add_argument("--alpha", type=float, default=0.05,
+    parser.add_argument("--alpha", type=float, default=2./255,
                         help="RAND+FGSM random perturbation scale")
-    parser.add_argument("--steps", type=int, default=10,
-                        help="Iterated FGS steps for BIM")
+    parser.add_argument("--steps", type=int, default=20,
+                        help="Iterated FGS steps for PGD")
 
     args = parser.parse_args()
     main(args.attack, args.src_model, args.target_models)
