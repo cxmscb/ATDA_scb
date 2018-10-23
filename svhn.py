@@ -122,7 +122,7 @@ def modelC():
 
 def model_select(type=0):
 
-    models = [modelZ, modelA, modelB, modelC, modelD]
+    models = [modelZ, modelA, modelB, modelC]
 
     return models[type]()
 
