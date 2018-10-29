@@ -152,15 +152,7 @@ def tf_test_error_rate(model, x, X_test, y_test):
     # Predictions for the test set
     logits = model(x)
     eval_prediction = K.softmax(logits)
-    
-    #grad = gen_grad(x, logits, None, loss='training')
-    
-    #test_x_adv = symbolic_fgs(x, grad, eps=0.1)
-    #test_x_logits = model(test_x_adv)
-
-    #diff_logits = K.sum(tf.abs(test_x_logits - logits), -1)
-    
-    #L1_grad = get_grad_L1(x, logits) 
+   
     feature_dict = {}
     predictions, logits_test = batch_eval([x], [eval_prediction, logits], [X_test])
     #feature_dict['logits_test'] = logits_test
@@ -175,5 +167,4 @@ def error_rate(predictions, labels):
     """
 
     assert len(predictions) == len(labels)
-    feature_dict = {}
     return 100.0 - (100.0 * np.sum(np.argmax(predictions, 1) == np.argmax(labels, 1)) / predictions.shape[0])
