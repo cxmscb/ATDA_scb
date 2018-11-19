@@ -60,27 +60,6 @@ The attack can be:
 | pgd    | The iterative FGSM        | *eps* (the norm of the perturbation); *steps* (the number of iterative FGSM steps); alpha = eps/10.0 |
 | mim    | Momentum Iterative Method | The parameter is fixed in the function *momentum_fgs* of the *fgs.py*. |
 
-###### competing methods
-
-- Original / Standard Adversarial Training:  https://github.com/cxmscb/ensemble-adv-training
-- Ensemble Adversarial Training：https://github.com/cxmscb/ensemble-adv-training
-- Provably Robust Training：https://github.com/locuslab/convex_adversarial  (based pytorch)
-- PGD-Adversarial Training: https://github.com/MadryLab/cifar10_challenge
-
-Classfication accuracy (%) on adversarial white-box attacks for CIFAR-10 ：
-
-|                                                      | FGSM | PGD  | RAND+FGSM | MIM  |
-| ---------------------------------------------------- | ---- | ---- | --------- | ---- |
-| regular training                                     | 4.3  | 0.5  | 19.6      | 0.9  |
-| Original / Standard Adversarial Training             | 52.4 | 49.5 | 70.2      | 50.5 |
-| Ensemble Adversarial Training                        | 46.7 | 43.5 | 67.5      | 44.5 |
-| PGD-Adversarial Training                             | 55.6 | 53.4 | 69.7      | 54.2 |
-| Adversarial Training with Domain Adaptation （FGSM） | 60.7 | 58.1 | 73.2      | 59.0 |
-
-More information on Fashion-MNIST, SVHN, CIFAR010 and CIFAR-100 can be found in the paper.
-
-
-
 ###### Acknowledgments
 
 Code refer heavily to:  [Ensemble Adversarial Training](https://github.com/cxmscb/ensemble-adv-training) 
