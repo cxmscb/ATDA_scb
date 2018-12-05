@@ -16,7 +16,7 @@ K.set_image_data_format('channels_first')
 def main(model_name, adv_model_names, model_type):
     np.random.seed(0)
     assert keras.backend.backend() == "tensorflow"
-    set_flags(24)
+    set_flags(32)
 
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
