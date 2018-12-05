@@ -11,19 +11,19 @@ The code was tested with Python 3.6.5, Tensorflow 1.8.0, Keras 2.12, Keras_contr
 
 ###### EXPERIMENTS
 
-We use  Adversarial Training (on FGSM)  with Domain Adaptaion to train a main model (modelZ)  for Fashion-MNIST. 
+We use  Adversarial Training (on FGSM)  with Domain Adaptaion to train a main model (modelZ)  for CIFAR-10 (default). 
 
 ```
 python -m train_atda models/modelZ_atda --type=0
 ```
 
-In addition, we use  Adversarial Training (on the noisy PGD)  with Domain Adaptaion to train a main model (modelZ)  for Fashion-MNIST. 
+In addition, we use  Adversarial Training (on the noisy PGD)  with Domain Adaptaion to train a main model (modelZ)  for CIFAR-10 (default). 
 
 ```
 python -m train_atda_npgd models/modelZ_atda --type=0
 ```
 
-Then, we use Normal Training to train a model (modelC) for  Fashion-MNIST.
+Then, we use Normal Training to train a model (modelC) for CIFAR-10 (default).
 
 ```
 python -m train models/modelC --type=3
