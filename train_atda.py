@@ -3,7 +3,7 @@ from keras import backend as K
 from tensorflow.python.platform import flags
 from keras.models import save_model
 
-from fashion_mnist import *
+from cifar10 import *
 from tf_utils import tf_train, tf_test_error_rate
 from attack_utils import gen_grad
 from fgs import symbolic_fgs, symbolic_alpha_fgs
