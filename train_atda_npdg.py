@@ -56,7 +56,7 @@ def main(model_name, adv_model_names, model_type):
         for _ in range(args.k):
             logits = m(x_noise)
             grad = gen_grad(x_noise, logits, y, loss='logloss')
-            x_noise =  K.stop_gradient(x_noise + args.eps / 10.0 * K.sign(grad))
+            x_noise =  K.stop_gradient(x_noise + args.eps / 4.0 * K.sign(grad))
             x_noise = tf.clip_by_value(x_noise, x - args.eps, x + args.eps)
             x_noise = tf.clip_by_value(x_noise, 0., 1.)
         x_advs[i] = x_noise
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                         help="number of epochs")
     parser.add_argument("--eps", type=float, default=4./255,
                         help="FGS attack scale")
-    parser.add_argument("--k", type=float, default=20,
+    parser.add_argument("--k", type=float, default=10,
                         help="steps")
     args = parser.parse_args()
     main(args.model, args.adv_models, args.type)
