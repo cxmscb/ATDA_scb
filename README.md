@@ -68,4 +68,4 @@ The attack can be:
 
 ###### Acknowledgments
 
-Codes refer heavily to:  [Ensemble Adversarial Training](https://github.com/ftramer/ensemble-adv-training) 
+The Code refers heavily to:  [Ensemble Adversarial Training](https://github.com/ftramer/ensemble-adv-training) 
