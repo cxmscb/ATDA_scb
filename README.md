@@ -1,7 +1,7 @@
 # ATDA
 This repository contains code to reproduce results from the paper:
 
-**Improving the Generalization of Adversarial Training with Domain Adaptation**
+**Improving the Generalization of Adversarial Training with Domain Adaptation （ICLR 2019）**
 
 openreview report: https://openreview.net/forum?id=SyfIfnC5Ym
 
